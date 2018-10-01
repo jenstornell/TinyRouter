@@ -20,7 +20,7 @@ route("portfolio/:any/:num", function($matches) {
 - `:any` matches anything within slashes `[^/]+`
 - `:num` matches any number, even negative ones `\d+|-\d+`
 
-### Custom
+### Custom regular expressions
 
 You can also create custom patterns. It will accept any regular expression with a few exceptions.
 
@@ -35,17 +35,7 @@ route('user/([0-9]+)', function($matches) {
 });
 ```
 
-## Type of calls
-
-### Anonymous function
-
-With the anonymous method you can do something when on match directly.
-
-```php
-route($pattern, function($matches){
-  return $matches[1];
-});
-```
+## Call types
 
 ### Function
 
@@ -57,6 +47,16 @@ route($pattern, 'about');
 function about() {
   return 'Basic function';
 }
+```
+
+### Anonymous function
+
+With the anonymous method you can do something when on match directly.
+
+```php
+route($pattern, function($matches){
+  return $matches[1];
+});
 ```
 
 ### Static function

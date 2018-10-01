@@ -6,7 +6,7 @@ class TinyRouter {
     ':alphanum' => '[a-zA-Z0-9]+',
     ':alpha' => '[a-zA-Z]+',
     ':any' => '[^/]+',
-    ':num' => '[0-9]+',
+    ':num' => '\d+|-\d+',
   ];
 
   function __construct() {
