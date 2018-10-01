@@ -7,17 +7,20 @@ To determine what will happend on each url, you can use routes.
 ### Numbers
 
 ```php
-# /user/123
 route("user/:num", function($matches) {
   return "$matches[1]";
 });
 ```
 
+- `:num` matches any number even negative ones.
+- A visit to url `/user/123` will output `123`.
+
 ### Alphabetically
 
+A visit to url `/portfolio/art/winter` will output `art and winter`.
+
 ```php
-# /portfolio/art/winter
-route("user/:alpha/:alpha", function($matches) {
+route("portfolio/:alpha/:alpha", function($matches) {
   return "$matches[1] and $matches[2]";
 });
 ```
