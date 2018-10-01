@@ -35,7 +35,7 @@ route('user/([0-9]+)', function($matches) {
 });
 ```
 
-## Call types
+## Examples
 
 ### Function
 
