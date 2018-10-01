@@ -6,11 +6,19 @@ To determine what will happend on each url, you can use routes.
 
 ### Numbers
 
->/user/123/321
+```php
+# /user/123
+route("user/:num", function($matches) {
+  return "$matches[1]";
+});
+```
+
+### Alphabetically
 
 ```php
-route("user/:num/:num", function($matches) {
-  return "$matches[1] and $matches[1]";
+# /portfolio/art/winter
+route("user/:alpha/:alpha", function($matches) {
+  return "$matches[1] and $matches[2]";
 });
 ```
 
