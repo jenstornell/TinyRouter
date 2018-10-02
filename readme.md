@@ -1,6 +1,6 @@
 # TinyRouter
 
-TinyRouter is perhaps the smallest router library on earth.
+TinyRouter is perhaps the smallest router library on earth. Still packed with features.
 
 ```php
 include __DIR__ . '/tinyrouter.php';
@@ -9,8 +9,6 @@ route(':all', function() {
   // Return something to output
 });
 ```
-
-If no match is found it will continue down, in this case print an error message.
 
 ## Patterns
 
