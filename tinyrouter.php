@@ -73,12 +73,14 @@ class TinyRouter {
   }
 }
 
-// Helper
-function route($pattern, $input) {
-  $Route = new TinyRouter();
-  $output = $Route->init($pattern, $input);
-  if(isset($output)) {
-    echo $output;
-    die;
+// Helpers
+
+if(!function_exists('route')) {
+  function route($pattern, $input) {
+    $Route = new TinyRouter();
+    $output = $Route->init($pattern, $input);
+    if(isset($output)) {
+      die($output);
+    }
   }
 }

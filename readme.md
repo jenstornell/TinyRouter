@@ -103,23 +103,7 @@ function routeHook($input, $matches) {
 }
 ```
 
-<!--
-### Presets
 
-The IO CMS core includes some route presets. You can run these by using preset the name as argument.
-
-```php
-route('preset_name');
-```
-
-### Core presets
-
-Below are the current IO CMS core route presets. You can also read about them in [route-presets.php](route-presets.php).
-
-```php
-route('asset');
-```
--->
 <!--
 
 ## Multiple routes in one go
@@ -136,3 +120,20 @@ routes([
 ]);
 ```
 -->
+
+## Requirements
+
+- PHP 7
+- Rewrite module enabled
+
+## Inspiration
+
+- [Tania Rascia](https://www.taniarascia.com/the-simplest-php-router/) - The starting point.
+- [Laravel](https://laravel.com/docs/5.7/routing) - How to use methods like get and post.
+- [Macow](https://github.com/noahbuscher/macaw/blob/master/Macaw.php) Good regular expressions.
+- [Kirby CMS routes](https://getkirby.com/docs/developer-guide/advanced/routing) Naming conventions.
+- [Flight routing](http://flightphp.com/learn/) Call as static class and objects.
+
+## License
+
+MIT
