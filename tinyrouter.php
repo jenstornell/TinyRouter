@@ -1,4 +1,5 @@
 <?php
+// MAIN CLASS
 class TinyRouter {
   public $uri;
   public $presets = [
@@ -16,11 +17,6 @@ class TinyRouter {
   function init($pattern, $input = []) {
     $pattern = $this->replacements($pattern);
     $matches = $this->matchExpression($pattern);
-
-    #echo $pattern . "\n";
-    #print_r($matches);
-
-    #echo "\n\n";
 
     if(!$matches) return;
 
@@ -45,7 +41,6 @@ class TinyRouter {
   }
 
   function matchExpression($pattern) {
-    #echo $this->uri . "\n";
     $is_match = preg_match($pattern, $this->uri, $matches);
     if($is_match) return $matches;
   }
@@ -57,9 +52,7 @@ class TinyRouter {
       $pattern = str_replace($preset, '(' . $regex . ')', $pattern);
     }
 
-    $pattern = '~^' . $pattern . '~';
-    #echo $pattern . "\n";
-    return $pattern;
+    return '~^' . $pattern . '~';
   }
 
   function fixHome($pattern) {
@@ -73,14 +66,38 @@ class TinyRouter {
   }
 }
 
-// Helpers
+// HELPERS
 
+// route()
 if(!function_exists('route')) {
   function route($pattern, $input) {
     $Route = new TinyRouter();
     $output = $Route->init($pattern, $input);
     if(isset($output)) {
       die($output);
+    }
+  }
+}
+
+// routes()
+if(!function_exists('routes')) {
+  function routes($routes) {
+    foreach($routes as $pattern => $call) {
+      route($pattern, $call);
+    }
+  }
+}
+
+// route::post()
+if(!class_exists('route')) {
+  class route {
+    public static function match($pattern, $input, $method) {
+      if($_SERVER['REQUEST_METHOD'] == $method) return route($pattern, $input);
+    }
+
+    // Matches methods like post,get, put etc
+    public static function __callStatic($method, $args) {
+      return self::match($args[0], $args[1], strtoupper($method));
     }
   }
 }

@@ -1,14 +1,18 @@
 # TinyRouter
 
-TinyRouter is perhaps the smallest router library on earth.
+TinyRouter is perhaps the smallest router library on earth. Donate to [DevoneraAB](https://www.paypal.me/DevoneraAB) if you want.
 
-Here is a really basic example: Visit `/portfolio/archive/123` and it will output `archive and 123`.
+A basic example, visit `/portfolio/archive/123` and it will output `archive and 123`.
 
 ```php
-route("portfolio/:any/:num", function($matches) {
+route('portfolio/:any/:num', function($matches) {
   return "$matches[1] and $matches[2]";
 });
+
+echo 'Error 404 - No route could be found';
 ```
+
+If no match is found it will continue down, in this case print an error message.
 
 ## Patterns
 
@@ -20,6 +24,14 @@ route("portfolio/:any/:num", function($matches) {
 - `:any` matches anything within slashes `[^/]+`
 - `:num` matches any number, even negative ones `\d+|-\d+`
 
+The below will match for examlpe `blog/2010/01/my-story`.
+
+```php
+route('blog/:num/:num/:any', function() {
+  // Do something
+});
+```
+
 ### Custom regular expressions
 
 You can also create custom patterns. It will accept any regular expression with a few exceptions.
@@ -27,11 +39,11 @@ You can also create custom patterns. It will accept any regular expression with 
 - You should not add a delimiter as `~` is used out of the box.
 - You should not end your pattern with `$` as it is used out of the box.
 
-The below will match `user/123` and output `User 123`.
+The below will match for examlpe `assets/my/images/picture.jpg`.
 
 ```php
-route('user/([0-9]+)', function($matches) {
-  echo "User $matches[1]";
+route('assets/(.*)\.(jpg|jpeg|png|gif|svg)', function() {
+  // Do something
 });
 ```
 
@@ -89,7 +101,34 @@ class MyClass {
 }
 ```
 
-## Hook (optional)
+### POST and GET
+
+By default the route will match no matter what the request method is. There is a short way to only allow POST or GET request.
+
+```php
+route::get('/', function(){
+  // Do something
+});
+
+route::post('/', function(){
+  // Do something
+});
+```
+
+### Multiple routes in one go
+
+You can setup all your routes with a single array. The `key` of every row is the pattern and the `value` is the call. That way it works very similar to the `route` function.
+
+```php
+routes([
+  '/' => 'myFunction',
+  'about/:any' => function() {
+    // Do something
+  }
+]);
+```
+
+### Hook
 
 To hijack what will happend when a route matches a pattern, you can use a hook. It can be useful if you build a tool and want to call a controller instead of a function for example.
 
@@ -120,6 +159,12 @@ routes([
 ]);
 ```
 -->
+
+## Additional notes
+
+- To keep it dead simple, `route()` is used as function name. To be sure, it will check if it does not already exist.
+- To keep it dead simple, namespaces is not used.
+- In case of collision, you can roll out your own helper function by calling `TinyRouter` class directly.
 
 ## Requirements
 
