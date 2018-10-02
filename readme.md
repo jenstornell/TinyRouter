@@ -35,12 +35,11 @@ route('blog/:num/:num/:any', function($matches) {
 You can also create custom patterns. It will accept any regular expression with a few exceptions.
 
 - You should not add a delimiter as `~` is used out of the box.
-- You should not end your pattern with `$` as it is used out of the box.
 
 The below will match for examlpe `assets/my/images/picture.jpg`.
 
 ```php
-route('assets/(.*)\.(jpg|jpeg|png|gif|svg)', function($matches) {
+route('assets/(.*)\.(jpg|jpeg|png|gif|svg)$', function($matches) {
   // Return something
 });
 ```

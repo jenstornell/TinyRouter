@@ -1,9 +1,7 @@
 <?php
 include __DIR__ . '/../tinyrouter.php';
 
-print_r($_SERVER);
-
-$root = '/misc/tinyrouter/';
+$root = '/misc/tinyrouter/tests/';
 $url = $root . 'about/me';
 $pattern = 'about/:any';
 
