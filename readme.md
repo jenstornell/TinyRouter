@@ -1,15 +1,13 @@
 # TinyRouter
 
-TinyRouter is perhaps the smallest router library on earth. Donate to [DevoneraAB](https://www.paypal.me/DevoneraAB) if you want.
-
-A basic example, visit `/portfolio/archive/123` and it will output `archive and 123`.
+TinyRouter is perhaps the smallest router library on earth.
 
 ```php
-route('portfolio/:any/:num', function($matches) {
-  return "$matches[1] and $matches[2]";
-});
+include __DIR__ . '/tinyrouter.php';
 
-echo 'Error 404 - No route could be found';
+route(':all', function() {
+  // Return something to output
+});
 ```
 
 If no match is found it will continue down, in this case print an error message.
@@ -101,9 +99,9 @@ class MyClass {
 }
 ```
 
-### POST and GET
+### Request method
 
-By default the route will match no matter what the request method is. There is a short way to only allow POST or GET request.
+By default the route will match no matter what the request method is. There is a short way to only allow a specific request method.
 
 ```php
 route::get('/', function(){
@@ -142,27 +140,25 @@ function routeHook($input, $matches) {
 }
 ```
 
+### If no matches - Error message
 
-<!--
-
-## Multiple routes in one go
-
-You can also run all the routes in one go. Everything that works for single routes also works for multiple routes.
+If no match is found, the page will continue to load. Therefor you need to take care of the page at that point, with an error message and a header.
 
 ```php
-routes([
-    'preset_name',
-    '/*/' => '_my_component',
-    '/*/' => function() {
-        return 'Something';
-    },
-]);
+route('/', function() {
+  // Return something
+});
+
+header("HTTP/1.0 404 Not Found");
+die('Error 404 - No route could be found');
 ```
--->
+
+## Donate
+
+Donate to [DevoneraAB](https://www.paypal.me/DevoneraAB) if you want.
 
 ## Additional notes
 
-- To keep it dead simple, `route()` is used as function name. To be sure, it will check if it does not already exist.
 - To keep it dead simple, namespaces is not used.
 - In case of collision, you can roll out your own helper function by calling `TinyRouter` class directly.
 

@@ -10,4 +10,4 @@ route(':any/:num', function($matches) { // archive/123
 });
 
 header("HTTP/1.0 404 Not Found");
-echo 'Error 404! No route was found!';
+die('Error 404! No route was found!');
