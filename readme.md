@@ -2,7 +2,7 @@
 
 *Version: 1.0*
 
-TinyRouter is perhaps the smallest router library on earth. Still packed with features.
+TinyRouter is perhaps the smallest PHP router library on earth. Still packed with features.
 
 ```php
 include __DIR__ . '/tinyrouter.php';
