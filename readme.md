@@ -40,7 +40,7 @@ You can also create custom patterns. It will accept any regular expression with 
 The below will match for examlpe `assets/my/images/picture.jpg`.
 
 ```php
-route('assets/(.*)\.(jpg|jpeg|png|gif|svg)', function() {
+route('assets/(.*)\.(jpg|jpeg|png|gif|svg)', function($matches) {
   // Return something
 });
 ```
@@ -54,7 +54,7 @@ If you use a string as a second argument, you will call a function.
 ```php
 route($pattern, 'about');
 
-function about() {
+function about($matches) {
   // Return something
 }
 ```
@@ -64,7 +64,7 @@ function about() {
 With the anonymous method you can do something when on match directly.
 
 ```php
-route($pattern, function(){
+route($pattern, function($matches){
   // Return something
 });
 ```
@@ -77,7 +77,7 @@ To call a static function you need to include the class name like below.
 route($pattern, 'MyStatic::about');
 
 class MyStatic {
-  public static function about() {
+  public static function about($matches) {
     // Return something
   }
 }
@@ -93,7 +93,7 @@ $object = new MyClass();
 route($pattern, [$object, 'about']);
 
 class MyClass {
-  function about() {
+  function about($matches) {
     // Return something
   }
 }
@@ -104,11 +104,11 @@ class MyClass {
 By default the route will match no matter what the request method is. There is a short way to only allow a specific request method.
 
 ```php
-route::get('/', function(){
+route::get('/', function($matches){
   // Return something
 });
 
-route::post('/', function(){
+route::post('/', function($matches){
   // Return something
 });
 ```
@@ -120,7 +120,7 @@ You can setup all your routes with a single array. The `key` of every row is the
 ```php
 routes([
   '/' => 'myFunction',
-  'about/:any' => function() {
+  'about/:any' => function($matches) {
     // Return something
   }
 ]);
@@ -145,7 +145,7 @@ function routeHook($input, $matches) {
 If no match is found, the page will continue to load. Therefor you need to take care of the page at that point, with an error message and a header.
 
 ```php
-route('/', function() {
+route('/', function($matches) {
   // Return something
 });
 
