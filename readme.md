@@ -1,11 +1,13 @@
 # TinyRouter
 
+*Version: 1.0*
+
 TinyRouter is perhaps the smallest router library on earth. Still packed with features.
 
 ```php
 include __DIR__ . '/tinyrouter.php';
 
-route(':all', function() {
+route(':all', function($matches) {
   // Return something to output
 });
 ```
@@ -23,8 +25,8 @@ route(':all', function() {
 The below will match for examlpe `blog/2010/01/my-story`.
 
 ```php
-route('blog/:num/:num/:any', function() {
-  // Do something
+route('blog/:num/:num/:any', function($matches) {
+  // Return something
 });
 ```
 
@@ -39,7 +41,7 @@ The below will match for examlpe `assets/my/images/picture.jpg`.
 
 ```php
 route('assets/(.*)\.(jpg|jpeg|png|gif|svg)', function() {
-  // Do something
+  // Return something
 });
 ```
 
@@ -53,7 +55,7 @@ If you use a string as a second argument, you will call a function.
 route($pattern, 'about');
 
 function about() {
-  return 'Basic function';
+  // Return something
 }
 ```
 
@@ -62,8 +64,8 @@ function about() {
 With the anonymous method you can do something when on match directly.
 
 ```php
-route($pattern, function($matches){
-  return $matches[1];
+route($pattern, function(){
+  // Return something
 });
 ```
 
@@ -76,7 +78,7 @@ route($pattern, 'MyStatic::about');
 
 class MyStatic {
   public static function about() {
-    return 'Static function';
+    // Return something
   }
 }
 ```
@@ -92,7 +94,7 @@ route($pattern, [$object, 'about']);
 
 class MyClass {
   function about() {
-    return 'Object function';
+    // Return something
   }
 }
 ```
@@ -103,11 +105,11 @@ By default the route will match no matter what the request method is. There is a
 
 ```php
 route::get('/', function(){
-  // Do something
+  // Return something
 });
 
 route::post('/', function(){
-  // Do something
+  // Return something
 });
 ```
 
@@ -119,7 +121,7 @@ You can setup all your routes with a single array. The `key` of every row is the
 routes([
   '/' => 'myFunction',
   'about/:any' => function() {
-    // Do something
+    // Return something
   }
 ]);
 ```
@@ -133,7 +135,7 @@ route('about/:any', 'world');
 
 function routeHook($input, $matches) {
   if(is_string($input)) {
-    return "Hello $input! Hello $matches[1]".
+    // Return something
   }
 }
 ```
