@@ -61,8 +61,15 @@ class TinyRouter {
 
   function uri() {
     if(!isset($_SERVER['REDIRECT_URL'])) return '/';
-    $skip_root = str_replace(dirname($_SERVER['SCRIPT_NAME']), '', $_SERVER['REDIRECT_URL']);
-    return substr($skip_root, 1);
+
+    $uri = $_SERVER['REDIRECT_URL'];
+    if(dirname($_SERVER['SCRIPT_NAME']) != '/') {
+      $uri = str_replace(dirname($_SERVER['SCRIPT_NAME']), '', $_SERVER['REDIRECT_URL']);
+    }
+
+    $uri = trim($uri, '/');
+
+    return $uri;
   }
 }
 
