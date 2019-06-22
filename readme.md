@@ -1,6 +1,6 @@
 # TinyRouter
 
-*Version: 1.0*
+*Version: 1.1*
 
 TinyRouter is perhaps the smallest PHP router library on earth. Still packed with features.
 
