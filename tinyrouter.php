@@ -46,11 +46,17 @@ class TinyRouter {
   }
 
   function replacements($pattern) {
+    $pattern = $this->fixHome($pattern);
+    
     foreach($this->presets as $preset => $regex) {
       $pattern = str_replace($preset, '(' . $regex . ')', $pattern);
     }
 
-    return '~^' . $pattern . '$~';
+    return '~^' . $pattern . '~';
+  }
+
+  function fixHome($pattern) {
+    return $pattern == '/' ? '^/$' : $pattern;
   }
 
   function uri() {
