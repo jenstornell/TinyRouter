@@ -1,11 +1,11 @@
 <?php
 include __DIR__ . '/tinyrouter.php';
 
-route('/', function() {
+route::get('/', function () {
   return 'Hello from home!';
 });
 
-route(':any/:num', function($matches) { // archive/123
+route('/:any/:any', function ($matches) { // archive/123
   return "A message from $matches[1], page $matches[2].";
 });
 
